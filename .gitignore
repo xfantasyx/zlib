@@ -23,6 +23,8 @@
 /zlib.pc
 /configure.log
 /build
+/install
+/build_generated
 
 .DS_Store
 .vs
