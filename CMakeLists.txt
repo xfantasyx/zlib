@@ -155,7 +155,9 @@ if( NOT ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
     add_library(zlib SHARED ${ZLIB_SRCS} ${ZLIB_DLL_SRCS} ${ZLIB_PUBLIC_HDRS} ${ZLIB_PRIVATE_HDRS})
     target_include_directories(zlib PUBLIC
       $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+      $<INSTALL_INTERFACE:include>
+      )
     
     set_target_properties(zlib PROPERTIES DEFINE_SYMBOL ZLIB_DLL)
     set_target_properties(zlib PROPERTIES SOVERSION 1)
@@ -163,7 +165,9 @@ endif()
 add_library(zlibstatic STATIC ${ZLIB_SRCS} ${ZLIB_PUBLIC_HDRS} ${ZLIB_PRIVATE_HDRS})
 target_include_directories(zlibstatic PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:include>
+    )
 
 
 
@@ -232,17 +236,17 @@ if(NOT SKIP_INSTALL_HEADERS AND NOT SKIP_INSTALL_ALL)
 
 # write zlibConfig
 include(CMakePackageConfigHelpers)
-# write_basic_package_version_file(
-#   ${CMAKE_CURRENT_BINARY_DIR}/zlibConfigVersion.cmake
-#   VERSION ${VERSION}
-#   COMPATIBILITY AnyNewerVersion
-# )
+write_basic_package_version_file(
+  ${CMAKE_CURRENT_BINARY_DIR}/zlibConfigVersion.cmake
+  VERSION ${VERSION}
+  COMPATIBILITY AnyNewerVersion
+)
 
-# install(FILES
-#   ${CMAKE_CURRENT_BINARY_DIR}/zlibConfigVersion.cmake
-#   DESTINATION
-#     cmake
-# )
+install(FILES
+  ${CMAKE_CURRENT_BINARY_DIR}/zlibConfigVersion.cmake
+  DESTINATION
+    cmake
+)
 
 configure_package_config_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/zlibConfig.cmake.in
