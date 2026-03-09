@@ -18,23 +18,23 @@ else(ZLIB_FIND_COMPONENTS)
 endif(ZLIB_FIND_COMPONENTS)
 
 
-if( TARGET zlib)
-    set(ZLIB_LIBRARY zlib)
-elseif(TARGET zlibstatic)
-    set(ZLIB_LIBRARY zlibstatic)
-endif()
+# if( TARGET zlib)
+#     set(ZLIB_LIBRARY zlib)
+# elseif(TARGET zlibstatic)
+#     set(ZLIB_LIBRARY zlibstatic)
+# endif()
 
-# Create imported target ZLIB::ZLIB
-if(NOT TARGET ZLIB::ZLIB)
-    add_library(ZLIB::ZLIB INTERFACE IMPORTED)
+# # Create imported target ZLIB::ZLIB
+# if(NOT TARGET ZLIB::ZLIB)
+#     add_library(ZLIB::ZLIB INTERFACE IMPORTED)
 
-    set_target_properties(ZLIB::ZLIB PROPERTIES
-    INTERFACE_LINK_LIBRARIES "${ZLIB_LIBRARY}"
-    )
-endif()
+#     set_target_properties(ZLIB::ZLIB PROPERTIES
+#     INTERFACE_LINK_LIBRARIES "${ZLIB_LIBRARY}"
+#     )
+# endif()
 
-set(ZLIB_LIBRARIES ${ZLIB_LIBRARY})
+# set(ZLIB_LIBRARIES ${ZLIB_LIBRARY})
 
-get_target_property(ZLIB_INCLUDE_DIRS ${ZLIB_LIBRARY} INTERFACE_INCLUDE_DIRECTORIES)
+# get_target_property(ZLIB_INCLUDE_DIRS ${ZLIB_LIBRARY} INTERFACE_INCLUDE_DIRECTORIES)
 
-message("Found ZLIB: (found version @ZLIB_FULL_VERSION@)")
+# message("Found ZLIB: (found version @ZLIB_FULL_VERSION@)")

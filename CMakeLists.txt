@@ -235,7 +235,7 @@ if(ZLIB_INSTALL)
             EXPORT zlibSharedExport
             FILE ZLIB-shared.cmake
             NAMESPACE ZLIB::
-            DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/zlib)
+            DESTINATION cmake)
 
         if(MSVC)
             install(
